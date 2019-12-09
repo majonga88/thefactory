@@ -1,0 +1,5 @@
+FROM postgres
+
+ENV POSTGRES_USER sarah
+ENV POSTGRES_PASSWORD connor
+ENV POSTGRES_DB fruit

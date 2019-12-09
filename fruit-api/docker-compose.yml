@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: 'fruit'
+      POSTGRES_USER: 'sarah'
+      POSTGRES_PASSWORD: 'connor'
+    ports:
+      - target: 5432
+        published: 5432
+        protocol: tcp
+        mode: host
+    volumes:
+      - db_data:/var/lib/postgresql/data
+  fruit-api:
+    image: thefactory/fruit-api
+    ports:
+      - target: 8080
+        published: 8080
+        protocol: tcp
+        mode: host
+    depends_on:
+      - 'db'
+    restart: always
+volumes:
+  db_data:
